@@ -119,6 +119,8 @@ input[type=range]{flex:1;min-width:140px;accent-color:var(--east)}
 .terms dt{font-weight:700;display:flex;align-items:center;gap:8px}
 .terms dt i{width:12px;height:12px;border-radius:50%;flex:none}
 .terms dd{margin:2px 0 0 20px;font-size:17px}
+.eyes{padding:0 12px 10px}
+.eyelab{font-weight:700;font-size:16.5px;color:var(--muted)}
 .copy{text-align:center;font-size:12.5px;color:var(--muted);padding-top:6px}
 .copy p{margin:2px 0}
 @media (prefers-reduced-motion:reduce){.meter i{transition:none}}
@@ -241,8 +243,9 @@ input[type=range]{height:30px}
       <section class="panel">
         <div class="phead"><h2>천구로 보기 <span>교과서 그림 Ⅶ-7</span></h2>
           <div class="row dirs"><button id="p3modeB" aria-pressed="true">관측자 기준 (교과서 그림)</button><button id="p3modeA" aria-pressed="false">우주 기준 (지구가 돌아요)</button><button id="p3terms" aria-pressed="true">천구 용어 표시</button><button id="p3reset">처음 각도로</button></div></div>
+        <div class="row dirs eyes" id="p3eyes"><span class="eyelab">관측자 눈으로 보기 ▶</span><button data-face3="동" aria-pressed="false">동쪽 하늘</button><button data-face3="남" aria-pressed="false">남쪽 하늘</button><button data-face3="서" aria-pressed="false">서쪽 하늘</button><button data-face3="북" aria-pressed="false">북쪽 하늘</button><button id="p3out" hidden>천구 밖에서 보기</button></div>
         <div class="view v-dome" id="v3out" tabindex="0" aria-label="지구와 관측자를 둘러싼 천구. 드래그하면 둘러볼 수 있어요.">
-          <div class="hint">드래그: 둘러보기 · 두 손가락/휠/＋−: 확대·축소</div>
+          <div class="hint" id="p3hint">드래그: 둘러보기 · 두 손가락/휠/＋−: 확대·축소</div>
         </div>
         <div class="fb">
           <p class="exp" id="p3exp"></p>
@@ -258,7 +261,7 @@ input[type=range]{height:30px}
         </div>
         <div class="fb">
           <p class="fbtext" id="p3x" aria-live="polite"></p>
-          <p class="note"><b style="color:#8e2bd6">보라색 화살표</b>는 왼쪽 천구 그림에서 관측자가 지금 바라보는 쪽이에요.</p>
+          <p class="note">버튼을 누르면 왼쪽 천구 그림도 관측자 눈으로 그 방향을 보여 줘요. 밖에서 볼 때 <b style="color:#8e2bd6">보라색 화살표</b>는 관측자가 지금 바라보는 쪽이에요.</p>
         </div>
       </section>
     </div>
@@ -273,10 +276,8 @@ input[type=range]{height:30px}
       <p><b>천구</b>는 관측자를 중심으로 하는 아주 큰 가상의 둥근 공이에요. 별들은 실제로는 지구에서 저마다 다른 거리에 있지만, 너무 멀리 있어서 모두 같은 거리의 둥근 천장에 붙어 있는 것처럼 보여요. 그래서 하늘을 하나의 커다란 공으로 생각하면 천체의 움직임을 쉽게 설명할 수 있어요. 천구는 지구보다 어마어마하게 커서, 그림에서 지구는 가운데에 아주 작게 그려요.</p>
       <dl class="terms">
         <div><dt><i style="background:#9aa7b4"></i>지평선(지평면)</dt><dd>관측자가 서 있는 지표면을 넓게 늘인 평면이 천구와 만나는 원이에요. 지평선 위의 하늘만 보이고, 아래는 땅에 가려 보이지 않아요. 그림의 주황 원 중 점선 부분이 보이지 않는 곳이에요.</dd></div>
-        <div><dt><i style="background:#7b4fd0"></i>천정 · 천저</dt><dd>관측자 머리 바로 위, 천구와 만나는 점이 천정이에요. 반대로 발 바로 아래 지평면 아래에 있는 점은 천저예요.</dd></div>
         <div><dt><i style="background:#2f7fd8"></i>천구의 북극 · 남극</dt><dd>지구의 자전축을 늘였을 때 천구와 만나는 두 점이에요. 북쪽이 천구의 북극, 남쪽이 천구의 남극이에요. <b class="ty">북극성</b>은 천구의 북극 아주 가까이 있어서 거의 움직이지 않아요.</dd></div>
         <div><dt><i style="background:#7d8fb3"></i>천구의 적도</dt><dd>지구의 적도면을 무한히 늘였을 때 천구와 만나는 원이에요. 천구의 북극·남극에서 똑같이 90°만큼 떨어져 있어요.</dd></div>
-        <div><dt><i style="background:#7b4fd0"></i>천구의 자오선</dt><dd>천정과 천저, 천구의 북극과 남극을 모두 지나는 원이에요. 천체가 남쪽 하늘에서 가장 높이 뜰 때(남중) 자오선 위에 있어요.</dd></div>
         <div><dt><i style="background:#e8641c"></i>일주 운동의 길</dt><dd>천구가 자전축(천구의 북극과 남극을 잇는 선)을 중심으로 돌기 때문에, 별은 천구의 적도와 나란한 원을 따라 움직여요. 이 원이 지평선과 어떻게 만나느냐에 따라 별이 뜨고 지는 모습이 정해져요.</dd></div>
       </dl>
       <p class="note">위의 [천구 용어 표시] 버튼으로 그림 속 용어 표시를 켜고 끌 수 있어요.</p>
@@ -1028,8 +1029,8 @@ function SphereLat(el,onLat){
 /* ---------- 탭 2·4: 천구 실험 ---------- */
 function dirText(lat,face){
   const a=Math.abs(lat),tilt=Math.round((90-a)*10)/10,south=lat<-0.5;
-  if(lat>=89.5)return '북극에서는 별이 <b>지평선과 나란하게</b> 돌아요. 뜨거나 지는 별이 없고, 북극성은 머리 꼭대기(천정)에 있어요. 어느 쪽을 봐도 별이 같은 높이를 유지하며 왼쪽에서 오른쪽으로 지나가요.';
-  if(lat<=-89.5)return '남극에서는 별이 <b>지평선과 나란하게</b> 돌아요. 뜨거나 지는 별이 없고, 천구의 남극이 머리 꼭대기(천정)에 있어요. 북극성은 보이지 않고, 어느 쪽을 봐도 별이 같은 높이로 오른쪽에서 왼쪽으로 지나가요.';
+  if(lat>=89.5)return '북극에서는 별이 <b>지평선과 나란하게</b> 돌아요. 뜨거나 지는 별이 없고, 북극성은 머리 꼭대기에 있어요. 어느 쪽을 봐도 별이 같은 높이를 유지하며 왼쪽에서 오른쪽으로 지나가요.';
+  if(lat<=-89.5)return '남극에서는 별이 <b>지평선과 나란하게</b> 돌아요. 뜨거나 지는 별이 없고, 천구의 남극이 머리 꼭대기에 있어요. 북극성은 보이지 않고, 어느 쪽을 봐도 별이 같은 높이로 오른쪽에서 왼쪽으로 지나가요.';
   const eq=a<=0.5;
   if(eq){
     if(face==='동')return '적도에서는 별이 동쪽 지평선에서 <b>수직으로</b> 곧게 떠올라요.';
@@ -1147,12 +1148,14 @@ function PolarisLab(){
   const pathUp=new THREE.LineBasicMaterial({color:0xe8641c,clippingPlanes:[upPl]});
   const pathDn=new THREE.LineDashedMaterial({color:0xe8641c,transparent:true,opacity:0.55,dashSize:0.035,gapSize:0.03,clippingPlanes:[dnPl]});
   const coneG=new THREE.ConeGeometry(0.028,0.085,12),coneM=new THREE.MeshBasicMaterial({color:0xe8641c});
+  const coneGrp=new THREE.Group();skyG.add(coneGrp); // 별이 움직이는 방향 화살표 (우주 기준에서는 숨김)
+  { const l=sprite('천구','#ffffff','rgba(70,110,170,.9)',0.1);l.position.set(-0.55,0.85,0.25).normalize().multiplyScalar(1.06);scene.add(l);}
   const tanAt=(dec,Hdeg)=>{const a=hpos(dec,Hdeg,1),b=hpos(dec,Hdeg+1,1);return b.sub(a).normalize();};
   for(const dec of [-40,-15,15,40,62,80]){
     const pts=[];for(let i=0;i<=180;i++)pts.push(hpos(dec,i*2,0.995));
     const g=new THREE.BufferGeometry().setFromPoints(pts);
     skyG.add(new THREE.Line(g,pathUp));const ld=new THREE.Line(g.clone(),pathDn);ld.computeLineDistances();skyG.add(ld);
-    for(const h of [-50,40,130,220]){const c=new THREE.Mesh(coneG,coneM);c.position.copy(hpos(dec,h,0.995));c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),tanAt(dec,h));skyG.add(c);}
+    for(const h of [-50,10,70,130,190,250]){const c=new THREE.Mesh(coneG,coneM);c.position.copy(hpos(dec,h,0.995));c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),tanAt(dec,h));coneGrp.add(c);}
   }
   // 천구의 적도
   { const pts=[];for(let i=0;i<=180;i++)pts.push(hpos(0,i*2,0.997));
@@ -1171,18 +1174,21 @@ function PolarisLab(){
     const s=sprite('북극성','#5a4300','rgba(255,226,120,.95)',0.1);s.position.copy(PAX).add(new THREE.Vector3(0.05,0.1,-0.02));scene.add(s);
     const ax=sprite('자전축','#ffffff','rgba(47,127,216,.9)',0.07);ax.position.copy(PAX.clone().multiplyScalar(-0.8)).add(new THREE.Vector3(0.1,0,0));scene.add(ax);}
   // 지구의 자전(분홍 화살표): 자전축 둘레로 서→동
+  const spinV=new THREE.Group();scene.add(spinV);
   { const R=0.27,arcA=Math.PI*1.55,g=new THREE.Group();
     g.add(new THREE.Mesh(new THREE.TorusGeometry(R,0.009,8,64,arcA),new THREE.MeshBasicMaterial({color:0xd6338a})));
     const c=new THREE.Mesh(new THREE.ConeGeometry(0.03,0.08,12),new THREE.MeshBasicMaterial({color:0xd6338a}));
     c.position.set(R*Math.cos(arcA),R*Math.sin(arcA),0);c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(-Math.sin(arcA),Math.cos(arcA),0));g.add(c);
-    g.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),PAX);g.position.copy(PAX.clone().multiplyScalar(-0.06));scene.add(g);
-    const l=sprite('지구의 자전','#ffffff','rgba(214,51,138,.9)',0.065);l.position.set(0.18,-0.3,0.25);scene.add(l);}
+    g.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),PAX);g.position.copy(PAX.clone().multiplyScalar(-0.06));spinV.add(g);
+    const l=sprite('지구의 자전','#ffffff','rgba(214,51,138,.9)',0.065);l.position.set(0.18,-0.3,0.25);spinV.add(l);}
   // ---- 관측자와 함께 움직이는 것들(localG): 지평면, 방위, 지구, 관측자, 북극성 고도 ----
-  localG.add(new THREE.Mesh(new THREE.CircleGeometry(1,96).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0xf3f6f9,transparent:true,opacity:0.6,side:THREE.DoubleSide,depthWrite:false})));
+  const horV=new THREE.Group();localG.add(horV); // 지평면·방위 (우주 기준에서는 숨김)
+  const horM=new THREE.MeshBasicMaterial({color:0xf3f6f9,transparent:true,opacity:0.6,side:THREE.DoubleSide,depthWrite:false});
+  horV.add(new THREE.Mesh(new THREE.CircleGeometry(1,96).rotateX(-Math.PI/2),horM));
   { const p=[];for(let i=0;i<=128;i++){const a=i/128*Math.PI*2;p.push(new THREE.Vector3(Math.cos(a),0,Math.sin(a)));}
-    localG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(p),new THREE.LineBasicMaterial({color:0x6b7785})));
-    for(const [t,x,z] of [['동',1,0],['서',-1,0],['남',0,1],['북',0,-1]]){const s=sprite(t,DIRCOL[t],'rgba(255,255,255,.92)',0.11);s.position.set(x*1.12,0.03,z*1.12);localG.add(s);}
-    const h=sprite('지평선','#ffffff','rgba(80,95,110,.8)',0.06);h.position.set(0.62,0.02,0.82);localG.add(h);}
+    horV.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(p),new THREE.LineBasicMaterial({color:0x6b7785})));
+    for(const [t,x,z] of [['동',1,0],['서',-1,0],['남',0,1],['북',0,-1]]){const s=sprite(t,DIRCOL[t],'rgba(255,255,255,.92)',0.11);s.position.set(x*1.12,0.03,z*1.12);horV.add(s);}
+    const h=sprite('지평선','#ffffff','rgba(80,95,110,.8)',0.06);h.position.set(0.62,0.02,0.82);horV.add(h);}
   const ER=0.17;
   const eT=ctex(1024,512,(g,w,h)=>{const oc=g.createLinearGradient(0,0,0,h);oc.addColorStop(0,'#e6f1fa');oc.addColorStop(.25,'#3f86c8');oc.addColorStop(.5,'#2a6db3');oc.addColorStop(.75,'#3f86c8');oc.addColorStop(1,'#e6f1fa');
     g.fillStyle=oc;g.fillRect(0,0,w,h);const r=rnd(8);g.fillStyle='#4f9a52';
@@ -1190,24 +1196,18 @@ function PolarisLab(){
     g.strokeStyle='#e8433a';g.lineWidth=4;g.beginPath();g.moveTo(0,h/2);g.lineTo(w,h/2);g.stroke();});
   const earthM=new THREE.Mesh(new THREE.SphereGeometry(ER,48,32),new THREE.MeshLambertMaterial({map:eT}));
   earthM.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),PAX);localG.add(earthM);
-  { const pt=makePatch();pt.position.y=ER;localG.add(pt);
-    const l=sprite('관측자 (우리나라)','#ffffff','rgba(242,162,58,.95)',0.06);l.position.set(0.3,ER+0.2,0);localG.add(l);}
+  const obsV=new THREE.Group();localG.add(obsV); // 관측자 모습 (관측자 눈으로 볼 때는 숨김)
+  { const pt=makePatch();pt.position.y=ER;obsV.add(pt);
+    const l=sprite('관측자 (우리나라)','#ffffff','rgba(242,162,58,.95)',0.06);l.position.set(0.3,ER+0.2,0);obsV.add(l);}
   // 북극성의 고도 = 북쪽 지평선과 자전축 사이의 각
+  const altV=new THREE.Group();localG.add(altV);
   { const pts=[];const N=new THREE.Vector3(0,0,-1);for(let i=0;i<=30;i++)pts.push(N.clone().lerp(PAX,i/30).normalize().multiplyScalar(0.5));
-    localG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0xd99a00})));
-    localG.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,-1)]),new THREE.LineBasicMaterial({color:0xd99a00})));
-    const l=sprite(`북극성 고도 ${LAT}° = 위도`,'#5a4300','rgba(255,226,120,.95)',0.06);l.position.copy(N.clone().add(PAX).normalize().multiplyScalar(0.62)).add(new THREE.Vector3(0.18,0,0));localG.add(l);}
+    altV.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0xd99a00})));
+    altV.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,-1)]),new THREE.LineBasicMaterial({color:0xd99a00})));
+    const l=sprite(`북극성 고도 ${LAT}° = 위도`,'#5a4300','rgba(255,226,120,.95)',0.06);l.position.copy(N.clone().add(PAX).normalize().multiplyScalar(0.62)).add(new THREE.Vector3(0.18,0,0));altV.add(l);}
   // 천구 용어 표시: 천정·천저·자오선(관측자와 함께), 천구의 북극·남극(자전축 위)
   const termL=new THREE.Group(),termS=new THREE.Group();localG.add(termL);scene.add(termS);
   { const dotG=new THREE.SphereGeometry(0.022,12,10),purple=new THREE.MeshBasicMaterial({color:0x7b4fd0});
-    const zen=new THREE.Mesh(dotG,purple);zen.position.set(0,1,0);termL.add(zen);
-    const nad=new THREE.Mesh(dotG,purple);nad.position.set(0,-1,0);termL.add(nad);
-    const l1=sprite('천정 (머리 바로 위)','#ffffff','rgba(123,79,208,.92)',0.06);l1.position.set(0,1.09,0);termL.add(l1);
-    const l2=sprite('천저 (발 바로 아래)','#ffffff','rgba(123,79,208,.92)',0.06);l2.position.set(0,-1.09,0);termL.add(l2);
-    const zl=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-1,0),new THREE.Vector3(0,1,0)]),new THREE.LineDashedMaterial({color:0x7b4fd0,dashSize:0.03,gapSize:0.03}));zl.computeLineDistances();termL.add(zl);
-    const mp=[];for(let i=0;i<=128;i++){const a=i/128*Math.PI*2;mp.push(new THREE.Vector3(0,Math.sin(a)*1.002,Math.cos(a)*1.002));}
-    const ml=new THREE.Line(new THREE.BufferGeometry().setFromPoints(mp),new THREE.LineDashedMaterial({color:0x7b4fd0,dashSize:0.05,gapSize:0.035}));ml.computeLineDistances();termL.add(ml);
-    const l3=sprite('천구의 자오선','#ffffff','rgba(123,79,208,.92)',0.06);l3.position.set(0.02,Math.sin(2.4)*1.06,Math.cos(2.4)*1.06);termL.add(l3);
     const n=sprite('천구의 북극','#ffffff','rgba(47,127,216,.92)',0.06);n.position.copy(PAX).multiplyScalar(1.0).add(new THREE.Vector3(0.05,0.2,-0.04));termS.add(n);
     const sp=new THREE.Mesh(dotG,new THREE.MeshBasicMaterial({color:0x2f7fd8}));sp.position.copy(PAX).multiplyScalar(-1);termS.add(sp);
     const sl=sprite('천구의 남극','#ffffff','rgba(47,127,216,.92)',0.06);sl.position.copy(PAX).multiplyScalar(-1.1);termS.add(sl);}
@@ -1219,19 +1219,35 @@ function PolarisLab(){
   const Zf=new THREE.Vector3(0,0,1);
   function setLook3(A,P){look3.quaternion.setFromUnitVectors(Zf,new THREE.Vector3(Math.sin(A*D2R)*Math.cos(P*D2R),Math.sin(P*D2R),-Math.cos(A*D2R)*Math.cos(P*D2R)));}
   $('p3terms').onclick=()=>{const on=$('p3terms').getAttribute('aria-pressed')!=='true';$('p3terms').setAttribute('aria-pressed',on);termL.visible=termS.visible=on;};
-  let mode='B';
-  const EXP={B:'<b>관측자 기준 (교과서 그림)</b> · 관측자에게는 지평선이 가만히 있고, 천구 전체가 <b style="color:#2f7fd8">자전축</b>을 축으로 지구의 자전과 반대 방향인 <span class="tw">동→서</span>로 돌아요. 북극성은 자전축이 천구와 만나는 곳 가까이 있어서 거의 움직이지 않고, 다른 별들은 자전축 둘레로 <b style="color:#e8641c">주황 원</b>을 따라 돌아요.',
-    A:'<b>우주 기준 (실제 운동)</b> · 실제로는 별(천구)이 가만히 있고, 지구가 자전축을 중심으로 <span class="te">서→동</span>으로 돌아요. 관측자와 지평선도 지구와 함께 돌지만, <b>자전축의 방향은 바뀌지 않아요</b>. 그래서 북극성은 늘 북쪽 지평선 위 <b class="ty">37.5°</b> 높이에 있고, 다른 별은 지평선 위로 올라왔다가 아래로 내려가요.'};
-  function setMode(m){mode=m;$('p3modeA').setAttribute('aria-pressed',m==='A');$('p3modeB').setAttribute('aria-pressed',m==='B');$('p3exp').innerHTML=EXP[m];}
-  $('p3modeA').onclick=()=>setMode('A');$('p3modeB').onclick=()=>setMode('B');setMode('B');
+  let mode='B',view3='out';
+  const EXP={T:'<b>관측자 기준 (교과서 그림)</b> · 관측자에게는 지평선이 가만히 있고, 천구 전체가 <b style="color:#2f7fd8">자전축</b>을 축으로 지구의 자전과 반대 방향인 <span class="tw">동→서</span>로 돌아요. 북극성은 자전축이 천구와 만나는 곳 가까이 있어서 거의 움직이지 않고, 다른 별들은 자전축 둘레로 <b style="color:#e8641c">주황 원</b>을 따라 돌아요.',
+    B:'<b>관측자 기준 · 관측자 눈으로 보기</b> · 천구 한가운데 서 있는 관측자가 되어 하늘을 봐요. 지평선은 가만히 있고, 별은 <b style="color:#e8641c">주황 원</b>을 따라 화살표 방향(<span class="tw">동→서</span>)으로 움직여요. 방향 버튼을 누르거나 화면을 끌어 고개를 돌려 보세요. [천구 밖에서 보기]를 누르면 교과서 그림으로 돌아가요.',
+    A:'<b>우주 기준 (지구가 돌아요)</b> · 실제로는 별(천구)이 가만히 있고, 지구가 자전축을 중심으로 <span class="te">서→동</span>으로 돌아요. 지구 위 초록 지표면(관측자)도 지구와 함께 돌아요. 그래도 <b>자전축의 방향은 바뀌지 않아서</b> 북극성은 늘 같은 자리에 있어요.'};
+  function setMode(m){ // T: 관측자 기준(교과서 그림, 밖), B: 관측자 기준(관측자 눈), A: 우주 기준
+    mode=m==='A'?'A':'B';view3=m==='B'?'in':'out';const inn=view3==='in';
+    $('p3modeB').setAttribute('aria-pressed',m!=='A');$('p3modeA').setAttribute('aria-pressed',m==='A');
+    $('p3eyes').hidden=m==='A';$('p3out').hidden=!inn;
+    horV.visible=mode==='B';altV.visible=m==='T';coneGrp.visible=mode==='B';
+    obsV.visible=spinV.visible=!inn;look3.visible=m==='T';horM.opacity=inn?0.94:0.6;
+    vo.cam.fov=inn?75:42;vo.cam.updateProjectionMatrix();
+    $('p3hint').textContent=inn?'끌기: 고개 돌리기 · 오른쪽 동·남·서·북쪽 하늘 버튼으로 방향 바꾸기':'드래그: 둘러보기 · 두 손가락/휠/＋−: 확대·축소';
+    if(!inn&&typeof reapply==='function')reapply();$('p3exp').innerHTML=EXP[m];}
+  $('p3modeB').onclick=()=>setMode('T');$('p3out').onclick=()=>setMode('T');$('p3modeA').onclick=()=>setMode('A');
   const nUp=new THREE.Vector3();
   function placeOut(){const w=st.t*15*D2R;
     if(mode==='B'){localG.quaternion.identity();skyG.quaternion.setFromAxisAngle(PAX,-w);}
     else{skyG.quaternion.identity();localG.quaternion.setFromAxisAngle(PAX,w);}
-    nUp.set(0,1,0).applyQuaternion(localG.quaternion);upPl.normal.copy(nUp);dnPl.normal.copy(nUp).negate();}
+    nUp.set(0,1,0).applyQuaternion(localG.quaternion);upPl.normal.copy(nUp);dnPl.normal.copy(nUp).negate();
+    // 우주 기준: 지평면이 없으니 실선/점선 구분 없이 모두 실선 · 관측자 눈: 땅 아래는 숨김
+    upPl.constant=mode==='A'?5:0;dnPl.constant=(mode==='A'||view3==='in')?-5:0;
+    if(view3==='in')fpLook(vo.cam,st.A,st.P);}
   const oo={yaw:100,pit:18,dist:3.5,target:new THREE.Vector3(0,0,0),minP:-60,maxP:85,minD:2,maxD:6};
-  const reapply=orbit(vo.el,vo.cam,oo);
-  $('p3reset').onclick=()=>{Object.assign(oo,{yaw:100,pit:18,dist:3.5});reapply();};
+  var reapply=orbit(vo.el,vo.cam,oo,()=>view3!=='in');
+  $('p3reset').onclick=()=>{Object.assign(oo,{yaw:100,pit:18,dist:3.5});setMode('T');};
+  { let p=null;const el=vo.el; // 관측자 눈으로 볼 때: 끌어서 고개 돌리기 (오른쪽 화면과 함께)
+    el.addEventListener('pointerdown',e=>{if(view3!=='in')return;p={x:e.clientX,y:e.clientY};el.setPointerCapture(e.pointerId);});
+    el.addEventListener('pointermove',e=>{if(!p||view3!=='in')return;st.A=((st.A-(e.clientX-p.x)*0.18)%360+360)%360;st.P=Math.max(0,Math.min(88,st.P+(e.clientY-p.y)*0.18));p={x:e.clientX,y:e.clientY};look();});
+    const up=()=>{p=null;};el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);}
   // 지구 안 (북쪽 하늘)
   const sky=Sky({altMarker:true});sky.setLat(LAT);
   const vi=mkRenderer($('v3in'),80,0.001,10);
@@ -1241,9 +1257,10 @@ function PolarisLab(){
     const near=Object.keys(faces).find(k=>Math.abs(((st.A-faces[k]+540)%360)-180)<23);
     document.querySelectorAll('[data-face3]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.face3===near));
     $('p3x').innerHTML=near?`<b>${near}쪽 하늘</b> · ${dirText(LAT,near)}${near==='북'?POLTXT:''}`:'고개를 돌려 동·남·서·북쪽 하늘을 살펴보세요.';}
-  document.querySelectorAll('[data-face3]').forEach(b=>b.onclick=()=>{const f=b.dataset.face3;st.A=faces[f];st.P=f==='북'?32:30;look();});
+  document.querySelectorAll('[data-face3]').forEach(b=>b.onclick=()=>{const f=b.dataset.face3;st.A=faces[f];st.P=f==='북'?32:30;
+    if(view3!=='in')setMode('B');look();});
   fpDrag(vi.el,st,look);fpZoom(vi);
-  timeBar($('ctl3'),st,()=>{});look();
+  timeBar($('ctl3'),st,()=>{});setMode('T');look();
   views.push({root:$('tab3'),tick(dt){
     if(st.playing){st.t+=dt*st.speed;if(!st.loop&&st.t>=24){st.t=24;st.playing=false;}st.sync();}
     placeOut();vo.r.render(scene,vo.cam);
